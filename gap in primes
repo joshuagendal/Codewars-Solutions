@@ -44,9 +44,7 @@ url http://www.codewars.com/kata/561e9c843a2ef5a40c0000a4/train/python
 
 def gap(g, m, n):
     primes = []
-    dummylst = range(m, n+1)
     final = []
-    final1 = []
     for num in range(m, n+1): #this is the function to add primes to the lst primes
         for i in range(2, num):
             if num % i ==0:
@@ -55,10 +53,10 @@ def gap(g, m, n):
             primes.append(num)
     for x, y in zip(primes[:-1], primes[1:]):
         if abs(y-x) ==g:
-            final.append([x,y])
-    if len(final) != 0:
-        final1 = final[0]
-        final1.sort()
-        return final1
+            final.append(x)
+            final.append(y)
+            break
+    if len(final) ==2:
+        return final
     elif len(final) ==0:
-        print 'None'
+        return 'None'
