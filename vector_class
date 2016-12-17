@@ -60,4 +60,4 @@ class Vector():
 
     def equals(self):
         if isinstance(self.vector_numbers, Vector):
-            raise ValueError('This vector already exists')
+            return False
