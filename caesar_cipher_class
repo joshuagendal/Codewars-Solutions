@@ -1,0 +1,46 @@
+"""A simple substitution cipher replaces one character from an alphabet with a
+character from an alternate alphabet, where each character's position in an
+alphabet is mapped to the alternate alphabet for encoding or decoding.
+
+E.g.
+
+map1 = "abcdefghijklmnopqrstuvwxyz";
+map2 = "etaoinshrdlucmfwypvbgkjqxz";
+
+cipher = Cipher(map1, map2);
+cipher.encode("abc") # => "eta"
+cipher.encode("xyz") # => "qxz"
+cipher.encode("aeiou") # => "eirfg"
+
+cipher.decode("eta") # => "abc"
+cipher.decode("qxz") # => "xyz"
+cipher.decode("eirfg") # => "aeiou"
+If a character provided is not in the opposing alphabet, simply leave it as be."""
+
+
+class Cipher(object):
+    def __init__(self, map1, map2):
+        self.map1 = map1
+        self.map2 = map2
+
+    def encode(self, string):
+        self.string = string
+        encoded_string = ''
+        for i in string:
+            try:
+                idx = self.map1.index(i)
+                encoded_string += self.map2[idx]
+            except ValueError:
+                encoded_string += i
+        return encoded_string
+
+    def decode(self, string):
+        self.string = string
+        decoded_string = ''
+        for i in string:
+            try:
+                idx = self.map2.index(i)
+                decoded_string += self.map1[idx]
+            except ValueError:
+                decoded_string += i
+        return decoded_string
